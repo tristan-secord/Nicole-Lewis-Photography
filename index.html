@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="img/apple_icons_57x57.png">
+<link rel="apple-touch-icon" sizes="72x72" href="img/apple_icons_72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="img/apple_icons_114x114.png">
+<title>Nicole Lewis Photography</title>
+<link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700,900" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/theme.css" type="text/css" media="all" />
+<link rel="stylesheet" href="css/responsive.css" type="text/css" media="all" />
+<link rel="stylesheet" href="css/custom.css" type="text/css" media="all" />
+</head>
+<body>
+	<header class="main_header">
+        <div class="header_wrapper">
+            <a href="index.html" class="logo"><img src="img/logo.png" alt="" class="logo_def"><img src="img/Logo.png" alt="" class="logo_retina"></a>
+            <nav>
+            	<div class="menu-main-menu-container">
+                	<ul id="menu-main-menu" class="menu">
+                    	<li class="current-menu-item">
+                        	<a href="index.html">Home</a>
+                        </li>                       
+                        <li>
+                        	<a href="gallery.html">Gallery</a>                      
+                        </li>                   
+                        <li>
+                            <a href="about.html">About</a>
+                        </li>     
+                        <li>
+                        	<a href="contact.html">Contact</a>
+                        </li>                       
+                	</ul>
+                </div>            
+            </nav>
+            <div class="clear"></div>
+        </div><!-- //Header Wrapper -->        
+	</header>
+    
+    <div class="gallery_kenburns">
+        <canvas id="kenburns">
+            <p>Your browser doesn't support canvas!</p>
+        </canvas>
+    </div>
+      
+    <script type="text/javascript" src="js/jquery.min.js"></script>    
+    <script type="text/javascript" src="js/modules.js"></script>
+	<script type="text/javascript" src="js/theme.js"></script>
+    <script>
+		gallery_set = [
+			'img/ruby.jpg',
+			'img/toes.jpg',
+			'img/laugh.jpg',
+			'img/BeYourself.jpg',
+			'img/harrbear.jpg',
+			'img/dog_sleeping.jpg',
+            'img/feet_chair.jpg',
+            'img/friends.jpg',
+            'img/friends_dog.jpg',
+            'img/hair.jpg'
+		]
+		function kenburns_resize() {
+			"use strict";
+			jQuery('.gallery_kenburns').append('<canvas id="kenburns"><p>Your browser does not support canvas!</p></canvas>');
+			jQuery('#kenburns').attr('width', window_w);
+			jQuery('#kenburns').attr('height', window_h);
+			jQuery('#kenburns').kenburns({
+				images: gallery_set,
+				frames_per_second: 30,
+				display_time: 5000,
+				fade_time: 1000,
+				zoom: 1.2,
+				background_color:'#000000'
+			});				
+			jQuery('#kenburns').css('top', '0px');
+		}
+		jQuery(document).ready(function(){
+			"use strict";
+			jQuery('#kenburns').attr('width', window_w);
+			jQuery('#kenburns').attr('height', window_h);
+			jQuery('#kenburns').css('top', header.height()+'px');
+			jQuery('#kenburns').remove();
+			var kenburnstimer = setTimeout(function(){
+				kenburns_resize();
+				clearTimeout(kenburnstimer);
+			}, 150);
+		});		
+		jQuery(window).resize(function(){ 
+			"use strict";
+			jQuery('#kenburns').remove();
+			var kenburnstimer = setTimeout(function(){
+				kenburns_resize();
+				clearTimeout(kenburnstimer);
+			}, 300);
+		});							
+	</script>
+</body>
+</html>
